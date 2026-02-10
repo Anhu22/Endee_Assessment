@@ -2,31 +2,21 @@
 
 ## Overview
 
-This project demonstrates a **Retrieval-Augmented Generation (RAG) pipeline** using **Endee (nD) vector database** and **HuggingFace sentence embeddings**. The system allows efficient storage of documents as embeddings and semantic similarity search to answer user queries.
+This project demonstrates a **Retrieval-Augmented Generation (RAG)** system powered by the **Endee (nD) vector database** and **HuggingFace sentence embeddings**. It allows storing documents as semantic embeddings and performing **similarity search** for dynamic queries. Users can upload **PDF or TXT files**, which are automatically converted into embeddings for retrieval.
 
-It’s designed as a **prototype of an intelligent knowledge retrieval system**, highlighting the integration of **vector databases** with **state-of-the-art NLP embeddings**, and can serve as a foundation for **question-answering systems, chatbots, and educational tools**.
+The project showcases a practical application of **vector databases**, enabling AI to find relevant information efficiently without relying on traditional keyword search.
 
 ---
 
 ## Features
 
-* Store and manage documents in **Endee vector database**.
-* Convert text documents to **semantic embeddings** using HuggingFace Sentence Transformers (`all-MiniLM-L6-v2`).
-* Perform **fast similarity search** to answer natural language queries.
-* Fully **containerized** with Docker for easy deployment (optional).
-* Python-based, with **virtual environment support** for clean dependency management.
-* Ready for extension to **larger datasets or multi-user applications**.
-
----
-
-## Technologies Used
-
-* **Python 3.11+**
-* **Endee (nD) Vector Database** – high-performance vector storage.
-* **LangChain / Endee-LangChain** – abstraction for vector storage and retrieval.
-* **HuggingFace Sentence Transformers** – semantic embeddings (`all-MiniLM-L6-v2`).
-* **Docker & Docker Compose** – optional containerized deployment.
-* **.env configuration** – secure API token management.
+* Store sample documents and user-uploaded PDFs/TXTs in the Endee vector store
+* Use **HuggingFace embeddings** for semantic understanding
+* Perform similarity search queries over document embeddings
+* Demonstrates **RAG workflow**: retrieve relevant content + generate informed responses
+* Fully containerized (optional) using **Docker**
+* Easy setup using Python virtual environment
+* Clean and modular project structure for extensibility
 
 ---
 
@@ -34,14 +24,13 @@ It’s designed as a **prototype of an intelligent knowledge retrieval system**,
 
 ```
 rag_project/
-├── app.py                  # Main script to run RAG pipeline
-├── rag_pipeline.py         # Core functions: vector store, add/search docs
-├── requirements.txt        # Python dependencies
-├── .env.example            # Template for environment variables
-├── Dockerfile              # Optional Docker setup
-├── docker-compose.yml      # Optional Docker Compose setup
-├── README.md               # Project documentation
-└── venv/                   # Python virtual environment (not pushed)
+├── app.py               # Main script to run the RAG pipeline
+├── rag_pipeline.py      # Functions for vector store, adding, and searching docs
+├── requirements.txt     # Python dependencies
+├── .env.example         # Environment variables template
+├── Dockerfile           # Docker setup (optional)
+├── README.md            # Project documentation
+└── venv/                # Python virtual environment (not pushed)
 ```
 
 ---
@@ -55,127 +44,110 @@ git clone https://github.com/Anhu22/Endee_Assessment.git
 cd Endee_Assessment/rag_project
 ```
 
-### 2. Create and activate a Python virtual environment
+### 2. Create a Python virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-**Windows (PowerShell):**
+### 3. Activate the virtual environment
 
-```powershell
+* **Windows (PowerShell):**
+
+```bash
 .\venv\Scripts\Activate.ps1
 ```
 
-**macOS/Linux:**
+* **macOS/Linux:**
 
 ```bash
 source venv/bin/activate
 ```
 
-### 3. Install dependencies
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
+### 5. Setup environment variables
 
-```bash
-cp .env.example .env
+Copy `.env.example` to `.env` and fill in your tokens:
+
 ```
-
-Edit `.env`:
-
-```env
 ENDEE_API_TOKEN=your_endee_api_token
-HF_TOKEN=your_huggingface_token  # optional for faster model downloads
+HF_TOKEN=your_huggingface_token  # optional, for faster downloads
 ```
-
-> **Note:** Do not commit your actual tokens. `.env` is ignored by Git.
 
 ---
 
 ## Running the Project
 
-### Option 1: Using Docker Compose (Recommended)
+### 1. Start Endee server
+
+* Using Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-This will start the **Endee server** on `localhost:8080`.
-
-### Option 2: Using Local Binary
-
-If you have built Endee manually:
+* Or using local binary (if built manually):
 
 ```bash
 ./build/ndd
 ```
 
-### Run the RAG Pipeline
+### 2. Run the RAG pipeline
 
 ```bash
 python app.py
 ```
 
----
+### 3. Upload documents (dynamic testing)
 
-## Example Usage
+When prompted, enter the path to a PDF or TXT file to add it to the vector store. Example:
 
-The pipeline adds **sample documents** to the Endee vector store and allows the user to query them:
+```
+Enter PDF or TXT file path to upload: "C:\Users\Anhupama N E\Documents\40-Gate\Subject-wise Notes\CN Notes.pdf"
+```
+
+### 4. Ask a query
+
+After uploading documents, the system allows you to ask queries based on the uploaded content:
 
 ```
 Ask a question: What is machine learning?
 Top Results:
-1. "Machine learning is a subset of Artificial Intelligence"
-2. "Deep learning uses neural networks to learn patterns"
+- "Machine learning is a subset of Artificial Intelligence"
+- "Deep learning uses neural networks to learn patterns"
 ```
 
-> This demonstrates **semantic search** where the system retrieves relevant answers even if the query does not exactly match the text in the documents.
+---
+
+## Core Vector Database Usage
+
+This project leverages **Endee vector database** to store and retrieve embeddings:
+
+* Each document is converted into a **dense semantic vector** using HuggingFace embeddings
+* Queries are transformed into vectors and compared using **cosine similarity**
+* This allows **semantic search**, retrieving content based on meaning rather than exact keywords
+* Uploading dynamic documents (PDF/TXT) ensures the RAG system adapts and responds to new data
 
 ---
 
-## Code Highlights
+## Optional: Docker
 
-* **rag_pipeline.py**
+* Build and run using Docker for easier deployment:
 
-  * `get_vector_store()`: Initializes Endee vector store with HuggingFace embeddings.
-  * `add_sample_docs(vector_store)`: Adds sample documents to the vector store.
-  * `search_docs(vector_store, query)`: Searches documents semantically using vector similarity.
-
-* **app.py**
-
-  * Interactive CLI for querying the RAG pipeline.
-  * Handles setup, vector store initialization, and querying workflow.
-
-* **requirements.txt**
-
-  * Lists all dependencies, ensuring reproducibility.
+```bash
+docker build -t endee-rag .
+docker run -p 8080:8080 endee-rag
+```
 
 ---
 
-## Achievements & Takeaways
+## Notes
 
-* Integrated **state-of-the-art NLP embeddings** with a **high-performance vector database**.
-* Built a **retrieval system capable of semantic similarity search**.
-* Learned best practices for:
-
-  * Environment management (`.env`, virtualenv)
-  * Dependency tracking (`requirements.txt`)
-  * Containerized deployment with Docker
-* Ensured **clean code structure and modular design** for easy extensions.
-
----
-## References
-
-* [Endee Docs](https://docs.endee.io/quick-start)
-* [HuggingFace Sentence Transformers](https://huggingface.co/sentence-transformers)
-* [LangChain Documentation](https://www.langchain.com/docs/)
-
-
-
-
-
-
+* Only PDF and TXT files are supported for uploads
+* Ensure the Endee server is running before executing the pipeline
+* HuggingFace embeddings may require an API token for faster downloads
