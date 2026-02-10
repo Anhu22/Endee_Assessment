@@ -7,17 +7,12 @@ The system supports uploading real PDF and TXT files, making it dynamic and inte
 
 ## Features
 
-Store sample documents in Endee vector store
-
-Upload real PDF or TXT files and add them to the vector store
-
-Use HuggingFace embeddings for semantic search
-
-Perform similarity search queries on uploaded documents
-
-Fully containerized using Docker (optional)
-
-Clean setup using Python and virtual environment
+* Store sample documents in Endee vector store
+* Upload real PDF or TXT files and add them to the vector store
+* Use HuggingFace embeddings for semantic search
+* Perform similarity search queries on uploaded documents
+* Fully containerized using Docker (optional)
+* Clean setup using Python and virtual environment
 
 ## Project Structure
 ```bash
@@ -33,7 +28,7 @@ rag_project/
 
 ## Setup Instructions
 
-Clone the repository:
+1.Clone the repository:
 
 ```bash
 git clone https://github.com/Anhu22/Endee_Assessment.git
@@ -41,29 +36,29 @@ cd Endee_Assessment/rag_project
 ```
 
 
-Create a Python virtual environment:
+2.Create a Python virtual environment:
 
 ```bash
 python -m venv venv
 ```
 
-Activate the virtual environment:
-Windows (PowerShell):
+3.Activate the virtual environment:
+* Windows (PowerShell):
 ```bash
 .\venv\Scripts\Activate.ps1
 ```
 
-macOS/Linux:
+* macOS/Linux:
 ```bash
 source venv/bin/activate
 ```
 
-Install dependencies:
+4.Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Setup environment variables:
+5.Setup environment variables:
 ```bash
 cp .env.example .env
 ```
@@ -73,22 +68,21 @@ Fill in your tokens:
 ENDEE_API_TOKEN=your_endee_api_token
 HF_TOKEN=your_huggingface_token  # optional, for faster HuggingFace downloads
 ```
+## Running the Project
 
-Start Endee server:
+1.Start Endee server:
 
-Using Docker Compose:
+* Using Docker Compose:
 ```bash
 docker-compose up -d
 ```
 
-Or using local binary (if built manually):
+* Or using local binary (if built manually):
 ```bash
 ./build/ndd
 ```
 
-## Running the Project
-
-Run the main script:
+2.Run the main script:
 ```bash
 python app.py
 ```
