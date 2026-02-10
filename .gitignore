@@ -54,3 +54,18 @@ dist/
 venv/
 rag_project/venv/
 .env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# HuggingFace cache
+.cache/
