@@ -1,10 +1,10 @@
-Endee RAG Assignment
-Overview
+## Endee RAG Assignment
+## Overview
 
 This project demonstrates a Retrieval-Augmented Generation (RAG) pipeline using Endee (nD) vector database and HuggingFace sentence embeddings. It allows you to store documents as embeddings, and perform semantic similarity search to answer queries efficiently.
 The system supports uploading real PDF and TXT files, making it dynamic and interactive.
 
-Features
+## Features
 
 Store sample documents in Endee vector store
 
@@ -18,7 +18,7 @@ Fully containerized using Docker (optional)
 
 Clean setup using Python and virtual environment
 
-Project Structure
+## Project Structure
 rag_project/
 ├── app.py                 # Main script to run RAG pipeline
 ├── rag_pipeline.py        # Functions for vector store, adding and searching docs
@@ -28,7 +28,7 @@ rag_project/
 ├── README.md
 └── venv/                  # Python virtual environment (not pushed)
 
-Setup Instructions
+## Setup Instructions
 
 Clone the repository:
 
@@ -79,7 +79,7 @@ Or using local binary (if built manually):
 
 ./build/ndd
 
-Running the Project
+## Running the Project
 
 Run the main script:
 
@@ -88,7 +88,7 @@ python app.py
 
 You can upload a PDF or TXT file and then ask queries.
 
-Example Output
+## Example Output
 Enter PDF or TXT file path to upload: C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf
 Added 44 documents from C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf to vector store
 
