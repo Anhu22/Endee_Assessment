@@ -1,128 +1,121 @@
-# Endee RAG Assignment
+Endee RAG Assignment
+Overview
 
-## Overview
+This project demonstrates a Retrieval-Augmented Generation (RAG) pipeline using Endee (nD) vector database and HuggingFace sentence embeddings. It allows you to store documents as embeddings, and perform semantic similarity search to answer queries efficiently.
+The system supports uploading real PDF and TXT files, making it dynamic and interactive.
 
-This project demonstrates a **Retrieval-Augmented Generation (RAG)** system powered by the **Endee (nD) vector database** and **HuggingFace sentence embeddings**. It allows storing documents as semantic embeddings and performing **similarity search** for dynamic queries. Users can upload **PDF or TXT files**, which are automatically converted into embeddings for retrieval.
+Features
 
-The project showcases a practical application of **vector databases**, enabling AI to find relevant information efficiently without relying on traditional keyword search.
+Store sample documents in Endee vector store
 
----
+Upload real PDF or TXT files and add them to the vector store
 
-## Features
+Use HuggingFace embeddings for semantic search
 
-* Store sample documents and user-uploaded PDFs/TXTs in the Endee vector store
-* Use **HuggingFace embeddings** for semantic understanding
-* Perform similarity search queries over document embeddings
-* Demonstrates **RAG workflow**: retrieve relevant content + generate informed responses
-* Fully containerized (optional) using **Docker**
-* Easy setup using Python virtual environment
-* Clean and modular project structure for extensibility
+Perform similarity search queries on uploaded documents
 
----
+Fully containerized using Docker (optional)
 
-## Project Structure
+Clean setup using Python and virtual environment
 
-```
+Project Structure
 rag_project/
-├── app.py               # Main script to run the RAG pipeline
-├── rag_pipeline.py      # Functions for vector store, adding, and searching docs
-├── requirements.txt     # Python dependencies
-├── .env.example         # Environment variables template
-├── Dockerfile           # Docker setup (optional)
-├── README.md            # Project documentation
-└── venv/                # Python virtual environment (not pushed)
-```
+├── app.py                 # Main script to run RAG pipeline
+├── rag_pipeline.py        # Functions for vector store, adding and searching docs
+├── requirements.txt       # Python dependencies
+├── .env.example           # Environment variables template
+├── Dockerfile             # Docker setup (optional)
+├── README.md
+└── venv/                  # Python virtual environment (not pushed)
 
----
+Setup Instructions
 
-## Setup Instructions
+Clone the repository:
 
-### 1. Clone the repository
-
-```bash
 git clone https://github.com/Anhu22/Endee_Assessment.git
 cd Endee_Assessment/rag_project
-```
 
-### 2. Create a Python virtual environment
 
-```bash
+Create a Python virtual environment:
+
 python -m venv venv
-```
 
-### 3. Activate the virtual environment
 
-* **Windows (PowerShell):**
+Activate the virtual environment:
+Windows (PowerShell):
 
-```bash
 .\venv\Scripts\Activate.ps1
-```
 
-* **macOS/Linux:**
 
-```bash
+macOS/Linux:
+
 source venv/bin/activate
-```
 
-### 4. Install dependencies
 
-```bash
+Install dependencies:
+
 pip install -r requirements.txt
-```
 
-### 5. Setup environment variables
 
-Copy `.env.example` to `.env` and fill in your tokens:
+Setup environment variables:
 
-```
+cp .env.example .env
+
+
+Fill in your tokens:
+
 ENDEE_API_TOKEN=your_endee_api_token
-HF_TOKEN=your_huggingface_token  # optional, for faster downloads
-```
+HF_TOKEN=your_huggingface_token  # optional, for faster HuggingFace downloads
 
----
 
-## Running the Project
+Start Endee server:
 
-### 1. Start Endee server
+Using Docker Compose:
 
-* Using Docker Compose:
-
-```bash
 docker-compose up -d
-```
 
-* Or using local binary (if built manually):
 
-```bash
+Or using local binary (if built manually):
+
 ./build/ndd
-```
 
-### 2. Run the RAG pipeline
+Running the Project
 
-```bash
+Run the main script:
+
 python app.py
-```
 
-### 3. Upload documents (dynamic testing)
 
-When prompted, enter the path to a PDF or TXT file to add it to the vector store. Example:
+You can upload a PDF or TXT file and then ask queries.
 
-```
-Enter PDF or TXT file path to upload: "C:\Users\Anhupama N E\Documents\40-Gate\Subject-wise Notes\CN Notes.pdf"
-```
+Example Output
+Enter PDF or TXT file path to upload: C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf
+Added 44 documents from C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf to vector store
 
-### 4. Ask a query
-
-After uploading documents, the system allows you to ask queries based on the uploaded content:
-
-```
-Ask a question: What is machine learning?
+Ask a question: Name types of data structures
 Top Results:
-- "Machine learning is a subset of Artificial Intelligence"
-- "Deep learning uses neural networks to learn patterns"
-```
+- GATE WALLAH COMPUTER SCIENCE & INFORMATION TECHNOLOGY HANDBOOK  Design Against Static Load
+5.1 1  DATA TYPES AND OPERATORS
+1.1   Data Types
+1.1.1 Primitive Data Type
+(a) Integer Types:
+✓ short int, unsigned short int
+✓ int, unsigned int
+✓ long int, unsigned long int
+✓ long long int, unsigned long long int
+...
+- GATE WALLAH COMPUTER SCIENCE & INFORMATION TECHNOLOGY HANDBOOK  C Programming
+5.27 6  TYPES OF DATA STRUCTURE , ARRAY & LINKED LIST
+6.1.1 Linear  data structure
+Every element can have almost 2 neighbours. Ex. arrays, linked list, stack, queue.
+6.1.2 Non -Linear data structure
+Element can have more than 2 neighbours. Ex. Tree, graph.
+6.2 Arrays
+6.2.1 1-D array
+Theoretically index can start from any integer value. Let A be a 1-D array of n elements...
 
----
+
+This demonstrates that the RAG system can dynamically ingest real documents and return relevant sections based on your query.
 
 ## Core Vector Database Usage
 
