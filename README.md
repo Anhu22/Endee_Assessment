@@ -1,4 +1,5 @@
 ## Endee RAG Assignment
+
 ## Overview
 
 This project demonstrates a Retrieval-Augmented Generation (RAG) pipeline using Endee (nD) vector database and HuggingFace sentence embeddings. It allows you to store documents as embeddings, and perform semantic similarity search to answer queries efficiently.
@@ -19,6 +20,7 @@ Fully containerized using Docker (optional)
 Clean setup using Python and virtual environment
 
 ## Project Structure
+```bash
 rag_project/
 ├── app.py                 # Main script to run RAG pipeline
 ├── rag_pipeline.py        # Functions for vector store, adding and searching docs
@@ -27,68 +29,74 @@ rag_project/
 ├── Dockerfile             # Docker setup (optional)
 ├── README.md
 └── venv/                  # Python virtual environment (not pushed)
+```
 
 ## Setup Instructions
 
 Clone the repository:
 
+```bash
 git clone https://github.com/Anhu22/Endee_Assessment.git
 cd Endee_Assessment/rag_project
+```
 
 
 Create a Python virtual environment:
 
+```bash
 python -m venv venv
-
+```
 
 Activate the virtual environment:
 Windows (PowerShell):
-
+```bash
 .\venv\Scripts\Activate.ps1
-
+```
 
 macOS/Linux:
-
+```bash
 source venv/bin/activate
-
+```
 
 Install dependencies:
-
+```bash
 pip install -r requirements.txt
-
+```
 
 Setup environment variables:
-
+```bash
 cp .env.example .env
-
+```
 
 Fill in your tokens:
-
+```bash
 ENDEE_API_TOKEN=your_endee_api_token
 HF_TOKEN=your_huggingface_token  # optional, for faster HuggingFace downloads
-
+```
 
 Start Endee server:
 
 Using Docker Compose:
-
+```bash
 docker-compose up -d
-
+```
 
 Or using local binary (if built manually):
-
+```bash
 ./build/ndd
+```
 
 ## Running the Project
 
 Run the main script:
-
+```bash
 python app.py
-
+```
 
 You can upload a PDF or TXT file and then ask queries.
 
 ## Example Output
+```bash
 Enter PDF or TXT file path to upload: C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf
 Added 44 documents from C:\Users\Anhupama N E\OneDrive\Documents\40-Gate\Subject-wise Notes\Programming and DS Notes.pdf to vector store
 
@@ -113,7 +121,7 @@ Element can have more than 2 neighbours. Ex. Tree, graph.
 6.2 Arrays
 6.2.1 1-D array
 Theoretically index can start from any integer value. Let A be a 1-D array of n elements...
-
+```
 
 This demonstrates that the RAG system can dynamically ingest real documents and return relevant sections based on your query.
 
