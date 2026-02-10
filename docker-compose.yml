@@ -1,6 +1,10 @@
 services:
   endee-oss:
-    image: endee-oss:latest
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      args:
+        BUILD_ARCH: avx2
     container_name: endee-oss
     ports:
       - "8080:8080"
