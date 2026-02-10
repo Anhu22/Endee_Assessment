@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_core.documents import Document
-from endee_langchain import EndeeVectorStore
+from langchain_community.vectorstores import FAISS
 
 load_dotenv()
 
@@ -13,15 +13,10 @@ def get_vector_store():
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-
-    vector_store = EndeeVectorStore.from_params(
-    embedding=embeddings,
-    api_token=os.getenv("ENDEE_API_TOKEN"),
-    index_name="student_docs_384",
-    dimension=384,
-    precision="float32",
-    space_type="cosine"
-)
+    vector_store = FAISS.from_texts(
+        texts=[],  # Start with empty, will add docs later
+        embedding=embeddings
+    )
 
     return vector_store
 
